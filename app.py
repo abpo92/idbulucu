@@ -41,8 +41,11 @@ def get_facebook_id(url):
 
 def get_instagram_id(url):
     try:
-        headers = {"User-Agent": "Mozilla/5.0"}
         username = url.rstrip('/').split('/')[-1]
+        headers = {
+            "User-Agent": "Instagram 219.0.0.12.117 Android",
+            "X-IG-App-ID": "936619743392459"
+        }
         api_url = f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}"
         res = requests.get(api_url, headers=headers, timeout=10)
         match = re.search(r'"id":"(\d+)"', res.text)
